@@ -2,7 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals';  
+import { AmazonConnectApp } from "@amazon-connect/app";
+
+const { connectApp } = AmazonConnectApp.init({
+  onCreate: (event) => {
+    const { appInstanceId } = event.context;
+    console.log('App initialized: ', appInstanceId);
+  },
+  onDestroy: (event) => {
+    console.log('App being destroyed');
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
